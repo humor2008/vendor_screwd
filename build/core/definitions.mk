@@ -62,7 +62,7 @@ endef
 ifeq ($(USE_PREBUILT_CACHE),1)
 
 define host-cache-check
-$(eval PREBUILT_CACHE_HIT := $(shell vendor/cm/tools/shlib-cache-check \
+$(eval PREBUILT_CACHE_HIT := $(shell vendor/screwd/tools/shlib-cache-check \
 		"$(MODULE_CACHE_PATH)" \
 		"$(LOCAL_PATH)" \
 		"LOCAL_CC=$(LOCAL_CC)" \
@@ -93,7 +93,7 @@ $(MODULE_CACHE_PATH)/lib.so: PRIVATE_SRC_FILES := $(strip $(LOCAL_SRC_FILES))
 $(MODULE_CACHE_PATH)/lib.so: $(__BUILT_MODULE) | $(ACP)
 	@mkdir -p $$(@D)
 	$(hide) $(ACP) $$^ $$@
-	$(hide) vendor/cm/tools/shlib-cache-enter \
+	$(hide) vendor/screwd/tools/shlib-cache-enter \
 		"$$(PRIVATE_MODULE_CACHE_PATH)" \
 		"$$(PRIVATE_LOCAL_PATH)" \
 		"$$(PRIVATE_INTERMEDIATES_PATH)" \
@@ -132,7 +132,7 @@ endif # USE_PREBUILT_CACHE
 ifeq ($(USE_PREBUILT_CACHE),1)
 
 define target-cache-check
-$(eval PREBUILT_CACHE_HIT := $(shell vendor/cm/tools/shlib-cache-check \
+$(eval PREBUILT_CACHE_HIT := $(shell vendor/screwd/tools/shlib-cache-check \
 		"$(MODULE_CACHE_PATH)" \
 		"$(LOCAL_PATH)" \
 		"LOCAL_CC=$(LOCAL_CC)" \
@@ -167,7 +167,7 @@ $(MODULE_CACHE_PATH)/lib.so: $(__BUILT_MODULE) | $(ACP)
 	@mkdir -p $$(PRIVATE_MODULE_CACHE_PATH)
 	$$(hide) $(ACP) $$(PRIVATE_BUILT_MODULE) $$(PRIVATE_MODULE_CACHE_PATH)/lib.so
 	$$(hide) $(ACP) $$(PRIVATE_LINKED_MODULE) $$(PRIVATE_MODULE_CACHE_PATH)/symbols.so
-	$$(hide) vendor/cm/tools/shlib-cache-enter \
+	$$(hide) vendor/screwd/tools/shlib-cache-enter \
 		"$$(PRIVATE_MODULE_CACHE_PATH)" \
 		"$$(PRIVATE_LOCAL_PATH)" \
 		"$$(PRIVATE_INTERMEDIATES_PATH)" \
