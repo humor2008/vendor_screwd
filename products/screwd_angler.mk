@@ -45,13 +45,23 @@ TARGET_KERNEL_CONFIG := saber_defconfig
 BOARD_KERNEL_IMAGE_NAME := Image.gz-dtb
 
 #Optimize-it!!
-export STRICT_ALIASING := true
-export ENABLE_GCCONLY := true
-export GRAPHITE_OPTS := true
-export CLANG_O3 := true
+# Build
+export ANDROID_COMPILE_WITH_JACK := false
+export DISABLE_OPTIMIZATIONS := false
+ifneq ($(DISABLE_OPTIMIZATIONS),true)
+export DONT_ERROROUT := false
+export USE_O3_OPTIMIZATIONS := false
+export FORCE_DISABLE_DEBUGGING := true
+export ENABLE_IPA_ANALYSER := true
+export TARGET_USE_PIPE := true
 export CORTEX_TUNINGS := true
+export ENABLE_PTHREAD := true
+export ENABLE_GOMP := true
+export GRAPHITE_OPTS := true
+export ENABLE_EXTRAGCC := true
+export STRICT_ALIASING := true
 export ENABLE_SANITIZE := true
-export USE_PIPE := true
+endif
 
 PRODUCT_BUILD_PROP_OVERRIDES += \
 	DEVICE_MAINTAINERS="David Smit (dsmitty166) & Dustin Rinne (f100cleveland)"
